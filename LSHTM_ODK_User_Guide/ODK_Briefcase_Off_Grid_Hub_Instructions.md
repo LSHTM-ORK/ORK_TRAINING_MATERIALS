@@ -1,4 +1,4 @@
-###**ODK Briefcase as an off-grid hub : Basic usage**
+### **ODK Briefcase as an off-grid hub : Basic usage**
 
 Background : In some situations it may be necessary to work entirely off-grid, for instance in places where there is no viable route to the internet or where internet services have been interrupted. In these situations it is preferable to continue to aggregate, backup and manage data in close to real time. One solution is to use ODK Briefcase, running on a laptop or mini-computer such as the Raspberry Pi, to gather the data from the various Android devices being used in the field. ODK Briefcase will automatically organise a project's files in a central data structure that can later be synced with a web-accessible ODK Aggregate server. 
 
@@ -18,7 +18,7 @@ These instructions are focussed on using a PC/Windows system, but Macs can be us
 Our instructions for setting up a Raspberry Pi server are available here [https://github.com/chrissyhroberts/ODK_Pi](https://github.com/chrissyhroberts/ODK_Pi). This platform has the advantage of being pocket sized and can run off minimal power supplies such as mobile battery packs. This makes it useful in conditions where kit-weight, power availability and similar issues could make it difficult to use a laptop.
 
 
-###Instructions
+### Instructions
 
 
 Ensure that *Asus File Manager* is installed. 
@@ -61,12 +61,12 @@ A sensible design would be similar to this...
 	C:/
 	->My Documents
 	  ->ODK-ZIPs
-	    ->Modou
-  		    ODK-Modou-190123.zip
-  		    ODK-Modou-190124.zip
-  		 ->Bubacarr
-  		   ODK-Bubacarr-190123.zip
-   		   ODK-Bubacarr-190124.zip
+	    	->Modou
+  			ODK-Modou-190123.zip
+  			ODK-Modou-190124.zip
+  		->Bubacarr
+  		   	ODK-Bubacarr-190123.zip
+   		   	ODK-Bubacarr-190124.zip
   
   
     
@@ -85,13 +85,13 @@ A sensible design would be similar to this...
     		->Modou
       			ODK-Modou-190123
       			ODK-Modou-190124
-		   ->Bubacarr
-		      ODK-Bubacarr-190123
-		      ODK-Bubacarr-190124
+			->Bubacarr
+				ODK-Bubacarr-190123
+				ODK-Bubacarr-190124
  
  
 
-###Pulling Data in to ODK Briefcase
+### Pulling Data in to ODK Briefcase
 
 Click the ```Settings``` tab and set a storage location for your ODK Briefcase database, for instance ```My Documents/ODK-Storage```
 
@@ -106,7 +106,7 @@ This will import all data from the folder you selected.
 To add more data to the ODK Briefcase database, repeat this process using other folders in the ODK-Data folder
 
 
-###Pushing Data to the ODK Aggregate server
+### Pushing Data to the ODK Aggregate server
 
 *NB. This process works only when online.*  
 
