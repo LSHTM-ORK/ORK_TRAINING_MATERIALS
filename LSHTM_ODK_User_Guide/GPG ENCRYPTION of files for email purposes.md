@@ -1,6 +1,34 @@
 # GPG ENCRYPTION of files for email purposes
 
+###**Rationale**
+
+Researchers often have the need to share data sets, which might contain sensitive information. Whilst it is not safe to send data sets by email, file sharing etc. this is inevitable as users often have few options and follow the path of least resistance and greatest expedience. A simple means by which to share data securely is by using asymettric encryption methods to lock the files before sharing over emai etc. 
+
+This process is simple to set up and requires the following
+
+**One time only**
+
+* Each member of team installs the open source [GNU Privacy Guard](https://gnupg.org/) (GPG) cryptographic software on their computer.
+* Each person generates a pair of cryptographic keys including a public (encryption) and private (decryption) key.
+* Each person shares their public key with every other member of the team who will need to send them data 
+
+**Each time**
+
+* Before sending a data set, the sender encrypts the file for a specific user or group of users (using their public keys)  
+* The sender emails the encrypted file as an attachment  
+* The recipients download and decrypt the file using their own private key  
+* Best practise is to finally delete the email once received so that encrypted files do not remain on servers  
+
+
+###INSTRUCTIONS TO SET UP GPG
+
+GPG can be set up on Macs, PCs and Linux.
+
 **MAC OS X**
+
+If you have not used the ```Terminal``` application before, you will find it in the ```Applications``` > ```Utilities``` folder on your mac's finder. 
+
+The following steps will first install ```Homebrew```, an open source "package manager" that allows you to install software using just a few simple commands. 
 
 Open a terminal window and copy/paste this text, then press return 
 
