@@ -36,7 +36,8 @@ Email queries to [*odk@lshtm.ac.uk*](mailto:ODK@LSHTM.AC.UK)
  - Usually servers are set up within 72 hours of request, but at busy times this may be longer.
 
 2. **Access your server** using a browser (Chrome, Safari & Firefox have been tested)
- - The URL of your server will take the form ```https://yourprojectname.odk.lshtm.ac.uk```  
+ - The URL of your server will take the form ```https://yourprojectname.odk.lshtm.ac.uk```  or ```https://ork.lshtm.ac.uk/yourprojectname```
+ 
 3. **Login** in with the username ```admin``` and the password ```lshtm```. Note that these are case sensitive.  
 
 4. **Set the admin password**
@@ -514,6 +515,11 @@ In order to be able to decrypt your data, your computer's installation of Java m
 
 > 	URL  
 >  ```https://yourprojectname.odk.lshtm.ac.uk/yourprojectname```  
+
+or
+
+>  ```https://ork.lshtm.ac.uk/yourprojectname```  
+
 >  Username  
 > ```admin```  
 >  Password  
