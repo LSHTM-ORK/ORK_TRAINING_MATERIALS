@@ -1,101 +1,145 @@
 <img src="./Files/LSHTM__Global_Health_Analytics_logo copy.png" alt="drawing" width="400"/>
 </Br>
 
+## LSHTM ODK Server Setup Guide
 
-### LSHTM Open Data Kit : Server/Device Setup Guide
-
-**version 2.0.0 -- 2018-09-07**
+**version 3.0.0 -- 2020-11-01**
 
 </Br></Br>
 
-### Introduction
 
-*This is not meant to be a definitive guide to using ODK but provides an
-overview of configuring your LSHTM Open Data Kit Server, devices and forms. More extensive documentation for ODK can be found at [docs.opendatakit.org](https://docs.opendatakit.org) and [xlsform.org](xlsform.org).  
-More information about LSHTM Open Research Kits can be found on our project website [odk.lshtm.ac.uk](odk.lshtm.ac.uk)
+## Introduction
 
-##### Outcomes  
-At the end of this tutorial you should will be able to do the following.
+* The majority of the support you will need to use ODK can be found in the official ODK documentation at [https://docs.getodk.org/](https://docs.getodk.org/). There you will find instructions that are both comprehensive and very well maintained by the ODK Community [https://forum.getodk.org/](https://forum.getodk.org/).
 
-	1. Set up a new account and server
-	2. Design a basic XForm for use with Open Data Kit
-	3. Upload blank forms to the server
-	4. Connect an Android device to the server
-	5. Load blank forms to an Android device
-	6. Fill in and Submit encrypted data to the server
-	7. Download and decrypt data on a local workstation
+* This document provides an overview of the specific requirements for setting up and configuring an ODK Server through LSHTM's system, run by the LSHTM Global Health Analytics group in collaboration with   
 
-Email queries to [*odk@lshtm.ac.uk*](mailto:ODK@LSHTM.AC.UK)
+* More information about other services provided by the LSHTM Global Health Analytics group can be found on our project website [odk.lshtm.ac.uk](odk.lshtm.ac.uk)
+
+* Email queries to [*odk@lshtm.ac.uk*](mailto:ODK@LSHTM.AC.UK)
   
 -
 
-#### Setting up your server
+### Setting up your server
 
-1. 	**Request an ODK Server** at LSHTM by completing [this form](https://docs.google.com/forms/d/1fR-hyt3KY3dqrRyFeoKOx0DvBHm1LBc3Q1LVG9GmPWU/edit?usp=forms_home&ths=true]).  
- - You will receive a confirmation email which contains **the URL of your server**. This URL is only for use by your team and for the specific project named in the server request form.  
- - Usually servers are set up within 72 hours of request, but at busy times this may be longer.
 
-2. **Access your server** using a browser (Chrome, Safari & Firefox have been tested)
- - The URL of your server will take the form ```https://yourprojectname.odk.lshtm.ac.uk```  or ```https://ork.lshtm.ac.uk/yourprojectname```
+- 	**Request an ODK Server** at LSHTM by completing [this form](https://docs.google.com/forms/d/1fR-hyt3KY3dqrRyFeoKOx0DvBHm1LBc3Q1LVG9GmPWU/edit?usp=forms_home&ths=true]).  
+
+- Each ODK project server is only for use by your team and for the specific project named in the server request form.  
+
+- You will receive an email from `no-reply@lshtm.ac.uk` which will invite you to become a `web user` on ODK Central, the software server that runs ODK. The email will contain a link to the ODK Central server system. *This link will expire after 24 hours.*
+- Click the link and you will be taken to a page where you can set your password. 
+
+ 	- A good technique for making passwords is to use four random words, put together in a memorable way
+		- For instance ```grapes$CATCH£brickRED*fudge``` is a strong and memorable password. 
+ 		- Do not use simple replacement logic like this ```cl3v3r-pa55w0rd``` as passwords generated this way are easily cracked
+ 		- Please note that passwords should NOT include the name of your project, nor the year it started (i.e. `covidcomplications2020` would be a **very bad** password)
+
+- Once you have signed in, you should see the welcome page and a list of projects that you have been assigned to as a user or project administrator. Any user can be assigned to multiple projects, but projects can only be created or archived by the system administrators. If you want to set up additional projects, then you should complete a new server request form.
+
+ <img src="./Files/central_welcome.png" alt="drawing" width="400"/>
+</Br>
+
+- If you click on the name of the project (here `Default Project`) you will be taken to the project page, which is where you will do most of the work. On this page you can add and test data collection forms, create and control access for users for the ODK Android app, or make URLs that will allow data collection via web-forms. The project page looks like this
+
+ <img src="./Files/central_project_view.png" alt="drawing" width="400"/>
+</Br>
  
-3. **Login** in with the username ```admin``` and the password ```lshtm```. Note that these are case sensitive.  
-
-4. **Set the admin password**
- - Select the ```Site Admin``` tab
- - By default there are two users setup: (A) ```admin``` & (B) ```anonymoususer```
- - Change the admin user password
- - Please note that password recovery for ODK servers is not a simple process. Pick a password that you can remember but which provides strong protection.  
- - A good technique for making passwords is to use four random words, put together in a memorable way
- - For instance ```grapes$CATCH$brickred$fudge``` is a strong and memorable password. 
- - Do not use simple replacement logic like this ```cl3v3r-pa55w0rd``` as passwords generated this way are easily cracked
-
-
-5. **Disable** the rights of the ```Anonymoususer``` account
- - **You must disable Anonymoususer Form Manager -- Otherwise people can
-access your data without a password**
- - Deselect the checkboxes to ensure that the ```Anonymoususer``` account does *not* have ```Data Viewer``` or ```Form Manager```rights. 
- - Unless you are running a **web-form** which will be filled anonymously, it is recommended that you deselect the ```Data Collector``` box for the ```Anonymoususer``` account. This will prevent anyone without a password from submitting data to your server.
  
-6. Press the ```Save``` button to commit these changes
+### User types
 
-To create a new user account
+ODK Central has two types of users, these being `web users` and `app users`. 
 
-* Type a new username in the *Add Users* box and click *Add*
-* Give the new username *Data Collector* rights and set a password
-* Save your changes
+- `Web users` are able to log in to the ODK Central server and carry out administrative tasks such as adding new forms and creating and managing `app users` and webforms. Only the LSHTM system administrators can add new `web users` to the system, but any web user who currently has an account with ODK central can be invited by the project administrator to join their project. In most cases we expect web-users to be LSHTM staff, students and honorary appointees.
+
+- `App users` have primarily data collection roles and can not access the server website. App users may include field enumerators and partners outside LSHTM.
 
 
-A typical set of users might include one ```admin``` account, one account for ```data collectors```, one for a ```team leader``` (able to see and download data, but not change forms) and a ```recovery``` account which can be accessed if the admin password is lost or. misplaced. The passwords for the ```admin``` and ```recovery``` accounts should differ.  
+### Initial project settings
 
-|Username|Full Name|Account Type|Data Collector|Data Viewer|Form Manager|Site Administrator|  
-|--------|---------|------------|--------------|-----------|------------|------------------|
-|admin|admin|ODK||X|X|X|
-|datacollector|datacollector|ODK|X||||
-|fieldlead|fieldlead|ODK||X|||
-|recovery|recovery|ODK||||X|
+Before you can start collecting data, you have to change some settings. From the project page, click the `settings` tab. Here you have three options.
 
-The server is now secure and should be set up multiple users.
-<div style="page-break-after: always;"></div>  
+ <img src="./Files/central_settings.png" alt="drawing" width="400"/>
 
-#### **Setting up encryption**
-
-All data communications from Android devices to the LSHTM servers are secure and encrypted by default, but without additional levels of data protection your data would be vulnerable to being accessed by third parties. For instance if a malicious party could obtain or guess your password for a ```data viewer``` account, then they could read and download all your study data using a web browser from anywhere in the world.
+* **Archive** this project
+	* This is used at the end of the study. Archiving is irreversible, so unless you are sure that you are done, don't press this button.
+* **Rename** 
+	* You will see the option to rename your project but **This should not be done under any circumstances**. The LSHTM system administrators use the project names to audit the use of our services across the platform and any projects which are renamed by users will be deactivated immediately.
+* **Encryption**
+	* Encryption protects your data and is required under our terms of service, but before you proceed with setting this up, read the rest of this document.
+	
+## **Encryption**
 
 The **General Data Protection Regulation (GDPR) (EU) 2016/679** came in to force in May 2018 and this law requires that all reasonable steps should be taken to make it reasonably unlikely that personal and sensitive data relating to individuals and their health could be accessed or used by third parties without explicit consent.   
 
-In the context of the activities of *LSHTM Open Research Kits*, we interpret this law to mean that **all data stored on our servers should be encrypted** in such a way that no person could view any data on any server through the web, even if they have a copy of the admin username and password. In practise this means that all data needs to be encrypted on the Android devices in the field, that only the encrypted forms of the data are stored on the server and that the decryption process should take place offline.
+In the context of the activities on the LSHTM ODK system, we interpret this law to mean that **all data stored on our servers should be encrypted** in such a way that no person could view any data on any server through the web, even if they have a copy of the project admin's username and password. In practise this means that all data needs to be encrypted on the Android devices in the field and that only the encrypted forms of the data are stored on the server.
 
-> PLEASE NOTE CAREFULLY
+All *data communications* from Android devices to the LSHTM servers are secure and encrypted by default, but without additional levels of data protection your data could be vulnerable to being accessed by third parties (for instance if they guessed or cracked your password) and without further measures described below, all your data would also be visible to the LSHTM team which runs the ODK service (who have access to all projects as part of their admin privileges). By following the steps below, you can e**nsure that all your data is visible only to your team and that no data are stored in a human-readable form anywhere on the web accessible server or backup servers**.
 
-> Any person storing data on LSHTM ODK servers without implementing encryption as described below may be in breach of the General Data Protection Regulation (GDPR) (EU) 2016/679  
 
-> GDPR makes no clear distinction between the use of names and pseudonyms or ID codes. Any data which can be linked to a living individual (by any person) is considered sensitive and 'relevant' to the GDPR. 
+ **PLEASE NOTE** 
 
->Fully anonymous data sets (for instance where the project leads cannot link the data back to the origin in any way) are exempt from GDPR.  
+* Any person storing data on LSHTM ODK servers without implementing encryption as described below may be in breach of the General Data Protection Regulation (GDPR) (EU) 2016/679  
 
-> For the avoidance of all doubt : **ALL DATA SHOULD BE ENCRYPTED** regardless of the level of anonymity
+* GDPR makes no clear distinction between the use of names and pseudonyms or ID codes. Any data which can be linked to a living individual (by any person) is considered sensitive and 'relevant' to the GDPR. 
 
- 
+* Fully anonymous data sets (for instance where the project leads cannot link the data back to the origin in any way) are exempt from GDPR.  
+
+* For the avoidance of all doubt : **ALL DATA SHOULD BE ENCRYPTED** regardless of the level of anonymity
+
+
+
+
+<Br> <Br>
+## **Encryption options**
+
+There are two different ways to encrypt data in ODK, both of which provide on-device and on-server data encryption protection, but each have different benefits depending on your project needs. It is therefore worth taking time to carefully consider which of the two approaches you choose as you won't be able to change your mind once you've started using one or the other.
+
+The two methods of encryption are 
+
+* **Project Level Encryption**
+* **Form Level Encryption**
+<Br><Br>
+
+**Project level encryption** is easy to set up and is probably the best option for most users.  
+
+- The basic function of project level encryption is that you click a button on the settings page and set a single system wide password that is then used to encrypt and decrypt your data across all forms in your project. When you want to download and decrypt your data, you provide the password and all your data will then be downloaded to your computer as a zip file containing human-readable data.  
+- If you forget or lose this password, there is no way to recover it and you will lose all your data. The password is never stored on the server, but is used as the secret key for decrypting data using cyphers that are stored by the server. Because of this, the system administrators cannot under any circumstance help you to recover the password. 
+- All data are encrypted using the same password, meaning that all forms are decrypted at once. If you want to allow different user groups access to different forms (for instance if team A should be able to decrypt form A and team B should be able to decrypt form B) then you should consider using `form level encryption`.
+- Download of project level encrypted data is in bulk, meaning that you may run in to issues if your project is expected to have has tens or hundreds of thousands of records, or if it contains large numbers of attachments such as photos, videos and audio recordings. A future version of the central server will address this but for now, if you expect your project to get very big, then you should consider using `form level encryption`.
+
+
+**Form level encryption** is a little harder to set up and should be used when
+
+
+- The number of form submissions is expected to be very large (i.e. tens or hundreds of thousands)
+- You are working with **lots** of form submissions that include attachments of photos, videos or audio recordings
+- You want to have more granular control over access to specific forms
+- You want to automate the download and processing of data
+
+If using `form level encryption`, you will have more control over the encryption of specific forms, much better handling of very large data sets and the ability to automate processes using command line interfaces. 
+
+As with the project level encryption, your data will be lost if you lose the decryption key file. The system administrators will have no means by which to help you retrieve the data unless you ask them to keep a copy of your decryption keys on your behalf.
+
+Downloading and decrypting data using `form level encryption` requires the use of a piece of software called `ODK Briefcase`.
+
+The use of `form level encryption` and `ODK briefcase` are detailed in Appendix A.
+
+
+
+## Consult the ODK Documentation for further instructions
+
+* Your project should now be up and running, with either `project level` or `form level encryption` in place. 
+* For further instructions on how to use ODK, please refer to the official ODK documentation at [https://docs.getodk.org/](https://docs.getodk.org/).
+
+
+
+
+<Br><Br><Br><Br>
+---
+
+
+###Appendix A : Form Level Encryption
 
 
 
@@ -122,7 +166,7 @@ You will need a unique pair of asymmetric encryption key files. Depending on how
 
 There are two options for how to do obtain your encryption key pairs.  
 
-**1. Obtain keys from LSHTM Open Research Kits team**
+**1. Obtain keys from LSHTM Global Health Analytics team**
 
 When you set up your account, we will offer you a pair of encryption keys. Each set of keys can be either given to you in person on a USB drive or sent by Whatsapp, which provides a secure way to send the sensitive keys over the internet.
 
@@ -201,295 +245,7 @@ Save the ```ODK.PUBLIC.KEY.11110.txt``` file for later. You will use this 'one-l
 
 <div style="page-break-after: always;"></div>  
 
-#### Designing a basic ODK form
-
-
-ODK form design is performed using Microsoft Excel. 
-This guide will show you how to build a very basic ```XLSForm``` document.
-More detailed information on the language of ```XLSForm``` design can be found at [xlsform.org](http://xlsform.org).
-
-
-* Create a new Excel workbook (.XLSX) called for instance ```tutorial_encrypted.xlsx```.
-* Add two new sheets to the workbook.
-* Name the three sheets ```survey```, ```choices``` and ```settings```.
-	* Please note : The sheet names are case sensitive and should be all-lower-case.  
-
-* Select the ```settings``` sheet and add the following column headings (case sensitive)
-
-|form_title|form_id|public_key|version|
-|----------|-------|----------|-------|
-
-* Enter the required settings  
-	* 	The ```form_title``` is the name of the form and is that which will be seen on the device screen when entering data. We *recommend* that the ```form_title``` should be written in 'snake case', where underscores are used in place of spaces.  
-	* The ```form_id``` is the internal name by which the server refers to the form. The ```form_id``` *must* be in snake case, but could be shorter than the ```form_title```.  
-	* The ```public_key``` is the 'one-liner' version of the public encryption key which you prepared earlier and which should be saved in your ```ODK.PUBLIC.KEY.11110.txt``` file.  
-	* The ```version``` field must be an integer value. ODK is able to push minor updates to some forms (for instance if you add a 'choice' or change a spelling mistake, but can only do so if the form has a valid ```version``` number. It is also good practise to add version numbers to your forms, so that field users can communicate the version they are currently working with. The version number should be the date and time on which the form was created or edited. 
-	* A correctly defined ```settings``` sheet should look something like this
-
-|form_title|form_id|public_key|version|
-|----------|-------|----------|-------|
-|Encrypted_Example|encrypt_example|MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1DXk7dbAI89DscB5M+aBlbvtIUcelkwdYX+CBV9uHdvkCm6g0CJM0nrzjRrhKyty0hSgIRfhIBozIfEJYSwRuszClGeNiL8Fz3JGYfnFWLw4ZmNKQwAz2CSzoI4Mu7QRjmeWPIBohdjHo1hJNIjogme0Iip4GDn+3DgsuvFYXxjkWlXN7opEkxAeBQukQzAxCiWbwdhKWKQzwgzmSu5HqCldkkQQ1Q5Zd/KsdmejWQa/5xDd/gOJ0ql+AVzZC1Z9fE0+2HLEEQca8pgWUPXAnPEK2BdNI/ltfPhgKOCE1inXAZxIrDSybePUIyYbIj14aQ30osMpp4EMFFU1rYbQIDAQAB|201809101015|
-
-
-* Select the ```survey``` sheet and add the following column headings (case sensitive). Note that these are the minimum required columns and [xlsform.org](http://xlsform.org) details many additional columns that you will find both useful and helpful.  
-
-|type|name|label|
-|----|----|-----|
-
-
-
-* Add your first question.
-  
-	* 	The ```type``` variable defines what kind of question is to be asked. There are many options, detailed on [xlsform.org](http://xlsform.org). For this example we will define a ```select_one``` type question, where the user selects an answer from a predefined list of possible answers. This type requires the ```select_one``` option and additionally the name of the list of predefined answers, which we will later define in the ```choices``` sheet.   
-	* The ```name``` variable is the internal name by which the system refers to the question. When you analyse the data, the data will have column headers that reflect the ```name``` variable defined here. Only alphanumeric ```a-z, A-Z, 0-9``` characters, underscores ```_``` and points ```.``` should be used in this field. For cross-compatibility between R and Stata, we recommend snake case. 
-	* The ```label``` variable is the 'question' that will be shown on the screen of the device.  
-	* A correctly defined ```survey``` sheet should look something like this
-
-|type|name|label|
-|----|----|-----|
-|select_one colours|favourite_colour|What is your favourite colour?|
-
-Select the ```choices``` sheet and add the following column headings (case sensitive and ```list name``` has a space between the two words). Note that these are the minimum required columns and [xlsform.org](http://xlsform.org) details many additional columns that you will find both useful and helpful.  
-
-|list name|name|label|
-|---------|----|-----|
-
-* Add a list of potential answers to the question you defined in the ```survey``` sheet.
-
-	* 	The ```list name``` variable should reflect the choices you defined in the ```survey``` sheet. When you defined ```select_one colours```, you defined ```colours``` as a list of possible answers. All rows with the name ```colours``` will be treated as a possible answer to the ```select_one colours``` question.  
-	*  The ```name``` variable defines the data that will be stored in ODK (and ultimately in your final data set. Whilst fully descriptive data (i.e. "red", "blue", "green", "yellow") can be stored in the data, you can also store simplified or coded data (i.e. 1,2,3,4). 
-	*  The ```label``` data are the various options that are shown on the screen of the device.
-	*  A correctly defined ```choices``` sheet is shown below. Please note that in this example the user would see the options "Red", "Blue", "Green" and "Yellow", but the data actually stored would be the corresponding numeric values 1, 2, 3 and 4.
-
-|list name|name|label|
-|---------|----|-----|
-|colours|1|Red|
-|colours|2|Blue|
-|colours|3|Green|
-|colours|4|Yellow|
-
-
-* Your form should now be ready to convert to XML
-
-
-
-  <div style="page-break-after: always;"></div>
-
--
-
-
-#### **Convert XLSX form to XML form**
-
-A piece of software called [ODK XLSForm Offline](https://github.com/opendatakit/xlsform-offline/releases/latest) is used to convert the finished Excel (.XLSX) file to the Extensible Markup Language (.XML) format that is used by the ODK server. 
-
-* Download and unzip the latest version of [ODK XLSForm Offline](https://github.com/opendatakit/xlsform-offline/releases/latest). Be sure to download the correct version for your operating system.
-* Run the ```ODK XLSForm Offline``` application.  
-* Press the *Choose file...* button and locate the ```tutorial_encrypted.xlsx``` form.  
-* By default the output file will be sent to the same directory as the XLSX file. This can be changed using the *Choose location...* button.  
-* Make sure that both checkboxes ```Overwrite exiting output files``` and ```Validate converted XForm with ODK Validate``` are selected.  
-* Press the *Run* button.  
-
-<img src="./Files/XLSFORMCONVERT.png" alt="drawing" width="400"/>
-  
-* If there are any errors, the console window will inform you about them. Some errors are fairly self-explanatory, but others less than obvious. The [ODK Forum](https://forum.opendatakit.org/) has an active user community and a substantial database of user queries on such errors as you are likely to see. It is a good place to search for similar problems and seek help. If you have significant problems with this stage, please email [odk@lshtm.ac.uk](mailto:odk@lshtm.ac.uk)  
-
-* ODK XLSForm Offline will now have created an XML version of the file. This is the *blank form* that will be submitted to your server.
-
-
--
-
-
-
-#### **Uploading Blank Forms to the ODK Server**
-
-You need to upload your *Blank forms* to your project's ODK Server. A project might have one or many forms (e.g First Visit, Second Visit, Consent Form...)
-
-
-* Login to your server using the ```Admin``` Username and Password
-
-	* Select the ```Form Management``` tab
-	* Click ```Add New Form```
-	* Select the location of your ODK Form File and Click ```Upload```
-	* Repeat as needed. All of the uploaded forms will be displayed on
-the ```Form Management``` tab.
-
-<img src="./Files/upload_form_to_server.png" alt="drawing" width="800"/>
-
-##### Note : If you delete a form from the server, you will also delete any data submitted using that form.
-
-
-Your forms are now ready to be loaded on to the Android handsets.
-
-
-
-  <div style="page-break-after: always;"></div>
-
--
-
-
-  
-#### Setting up your Android devices
-Note that some of the menus differ between devices, so you may need to use the internet or play around to find the correct menus on your specific devices.  
-
-* These steps must be performed on each Android device that will be used in your project and are designed to ensure the following...     
-	*	ODK Collect works as intended with access to GPS, photo and audio/video recording
-	*	Only the field workers can access the ODK questionnaire(s) and any data within it
-	*	Field workers cannot access any apps or setting to which they should not have access
-	*	Only research managers can access the full functions of the tablet.
-	*	Data is protected by encryption. 
-	*	The tablet can be traced, locked and wiped remotely, should it be lost or stolen.
-	*	Contact details of the research team are on the tablet, so it can be reunited with the owner if lost.
-
-
-* Set a Screen Lock, with a password the field team have access to. 
-	*	Go to settings -> security -> Screen Lock.
-	*	Make a note of the password selected.
-	*	Ensure “Power button instantly locks” is also activated(settings -> security)
-
-* Encrypt the tablet.
-	* Settings -> security -> Encrypt Tablet and follow instructions. You’ll need to have the tablet charged and plugged in. 
-
-* Enable GPS location services
-	*	Settings -> Location.  Ensure this is on.
-
-* Install ```Barcode Scanner``` app by “ZXing team”.
-	*	Go to Play Store.
-	*	Search for “Barcode Scanner”
-	*	Select “Barcode Scanner” by “ZXing team”
-	* Tap “Install” and follow instructions
-
-* Install ```ODK Collect``` app
-	*	Go to Play Store, search for “ODK”, install the appropriate app
-
-* OPTIONAL: Install ```Open Map Kit``` app
-	* ODK Collect (Step 5) allows the collection of detailed GPS data. If you wish to also allow physical annotation of maps in the field then OpenMapKit adds this functionality.
-	*	Go to Play Store, search for ```Open Map Kit```, install the appropriate app
-
-* OPTIONAL BUT RECOMMENDED: Setup a mechanism to remotely monitor the app. 
-	*	If you have added a Google Account for the phone then it can be tracked via Android Device Manager online – this is recommended and allows one Google account to track multiple devices.
-	* The alternative is to install the ```Prey Anti Theft``` app, a remote device tracker that can wipe the tablet if it is lost.
-
-* OPTIONAL BUT RECOMMENDED: Install the ```Applock``` app, to block access to Settings and any apps that are not required.
-	*	Use a DIFFERENT pass number to that used for the screen lock. 
-	*	Record the pass number used
-	* 	Install ```Advanced Protection``` app for AppLock from the Play store. This prevents users from disabling the AppLock.
-	*	Block access to settings and any apps that should not be accessed such as Settings, Gmail, Clock, Prey, Play Store (and much more)...
-	
-*	Ensure that the tablet user can still use key apps:
-	*	ODK Collect
-	*	Barcode Scanner
-	*	Wifi
-	*	Camera
-	*	Sound Recorder / RecForge Pro II
-	*	Gallery
-	*	OpenMapKit if installed
-
-*	Note the IMEI device ID number 
-	*	Go to :Settings -> Security -> Status
-	* Record the “WLAN MAC address”.
-
-* Put a sticker on each tablet with an ID. You should have a record of the following for each device:
-	*	Tablet ID sticker
-	* Screen Lock password
-	* AppLock passnumber (and answer to security qu if set)
-	* IMEI device ID number
-
-
-* Open ODK Collect and press the "hamburger" (three dots) button to access ```General Settings```.  
-* Select ```server``` and enter the correct settings    
-
-> Type   
-> ```ODK Aggregate```  
-> ODK Aggregagte settings  
-> URL  
-> ```https://yourprojectname.odk.lshtm.ac.uk```  
-> Username  
-> ```datacollector```  
-> Password  
-> ```grapes$CATCH$brickred$fudge```  
-> Submission transport (advanced)  
-> Send submissions via  
-> ```Wifi/Cellular (recommended)```  
-
-* Make sure you include the ```https://``` not ```http://``` in the URL
-* Do not use a user name and password for an account that has ```Data Viewer```, ```Form Manager``` or ```Site Administraor``` rights of server access.  
-
-
-Return to the main screen and click *Get Blank Forms*
-
-This will bring up a list of all the forms on your ODK server. Select
-the ones you want and click ```Get Selected```.  
-
-**Your device is now set up to collect data**.
-
-
-Before going to the field sites:
-
-**ESSENTIAL**  
-
-* Set the tablet in the relevant local language.
-	* Go to settings  ->  language & input  ->  language
-
-*	Ensure that the time and date are correct for the field site.
-	*	Go to Settings  ->  time & date.
-
-*RECOMMENDED*  
-
-*	Add contact details on a sticker on the back of the tablet
-	* e.g. contact telephone number for the field supervisor or a local co-investigator.
-
-*	Add contact details on the Lock Screen
-	*	Go to Settings  ->  Security  -> Owner Info
-	* Enter an owner name and a contact telephone number e.g. for the field supervisor or a local co-investigator.
-
-
-
-  <div style="page-break-after: always;"></div>
-
--
-
-
-
-
-#### Collecting and Uploading Data
-
-
-Collecting Data (Steps 1-5) does not require a mobile or Wi-Fi
-connection.   
-Uploading data to the server (Step 6) requires a data connection.
-
-1. On the front page select *Fill Blank Form*
-2. Select the appropriate Survey Form from the list
-3. Complete the Survey
-4. On the final screen, ensure that ```Mark form as finalized``` is selected
-5. Press ```Save Form and Exit```. At this stage the data is encrypted and connot be opened again. If you wish to save an unencrypted form for later, deselect ```Mark form as finalized``` before saving.
-6. On the front page press ```Send Finalized Form```.  
-7. Select ```Toggle All``` then click ```Send Selected```. This will upload all finalised forms to the server.
-
-At this stage your data will be stored on the LSHTM servers in an encrypted format. The data are backed up daily and copies for archiving are streamed to tape on a weekly basis. All data backed up to LSHTM servers, backups and tapes remain encrypted.
-
-If you log in to your server website using an account that has ```Data Viewer``` permission, you will see encrypted data on the ```Submissions``` tab. 
-
-
-<img src="./Files/encrypted_data_on_server.png" alt="drawing" width="800"/>
-
-  <div style="page-break-after: always;"></div>
-
--
-
-NOTE : Some users encounter an error when submitting data for the first time.   
-
-> Form Listing Failed. Error: java.security.cert.CertPathValidatorException: Trust anchor for certification path not found. While accessing https://yourprojectname.odk.lshtm.ac.uk/formList.
- 
-If you see an error similar to this message, you may need to update the security certificates on your device. This error is common on older Android devices. 
-
-The simple solution is to open the ```Chrome``` browser on the Android device and visit each of these URLS in turn. Accept any prompts from Android to install these certificates. This only needs to be done once for each device and only when the problem occurs. 
-
-[Quo Vadis Root Certificate](https://cert.odk.lshtm.ac.uk/cert/QuoVadisOVRootCertificate.crt)  
-[Quo Vadis Intermediate Certificate](https://cert.odk.lshtm.ac.uk/cert/QuoVadisOVIntermediateCertificate.crt)  
-
-
-#### Downloading and Decrypting Data
+#### Downloading and Decrypting Data using ODK Briefcase (Form level encryption only)
 
 
 In order to be able to decrypt your data, your computer's installation of Java may need to be updated. This is because the decryption requires advanced cryptography files that are not included in all Java releases.
@@ -566,9 +322,6 @@ Inside each of these folders you will find encrypted files.
 
 
 <img src="./Files/CSVFILEOUTPUT.png" alt="drawing" width="600"/>
-
-
-
 
 
 
