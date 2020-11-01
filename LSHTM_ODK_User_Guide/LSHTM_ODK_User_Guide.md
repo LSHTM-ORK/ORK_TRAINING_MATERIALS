@@ -129,17 +129,18 @@ The use of `form level encryption` and `ODK briefcase` are detailed in Appendix 
 
 ## Consult the ODK Documentation for further instructions
 
-* Your project should now be up and running, with either `project level` or `form level encryption` in place. 
-* For further instructions on how to use ODK, please refer to the official ODK documentation at [https://docs.getodk.org/](https://docs.getodk.org/).
+* Your project should now be up and running, with either `project level` or `form level encryption` in place.  
 
+* For further instructions on how to use ODK, please refer to the official ODK documentation at [https://docs.getodk.org/](https://docs.getodk.org/).  
 
-
-
-<Br><Br><Br><Br>
+<Br>  
 ---
 
+<Br><Br><Br><Br>
 
-###Appendix A : Form Level Encryption
+
+
+## Appendix A : Form Level Encryption
 
 
 
