@@ -134,7 +134,8 @@ The use of `form level encryption` and `ODK briefcase` are detailed in Appendix 
 * For further instructions on how to use ODK, please refer to the official ODK documentation at [https://docs.getodk.org/](https://docs.getodk.org/).  
 
 <Br>  
----
+<div style="page-break-after: always;"></div>  
+
 
 <Br><Br><Br><Br>
 
@@ -242,7 +243,7 @@ bQIDAQAB
 
 Save the ```ODK.PUBLIC.KEY.11110.txt``` file for later. You will use this 'one-liner' key when you design your data collection forms. Please note that ODK form design is covered in a [separate guide](). For the remainder of this guide we will use a simple template form which you can download [here](./Files/tutorial_encrypted.xlsx).
 
--
+
 
 <div style="page-break-after: always;"></div>  
 
