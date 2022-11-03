@@ -54,6 +54,14 @@ ODK Central has two types of users, these being `web users` and `app users`.
 
 - `App users` have primarily data collection roles and can not access the server website. App users may include field enumerators and partners outside LSHTM.
 
+### Adding additional users
+
+[App users](https://docs.getodk.org/central-users/#managing-app-users) are people who can submit data to ODK Central via the ODK Collect app. Project managers can add as many app users as they like. 
+
+[Web users](https://docs.getodk.org/central-users/#managing-web-users) are people who are authorised to use ODK Central’s web interface. There are [different roles](https://docs.getodk.org/central-users/) for web-users, but only system admins can add web-users to your project. To add web users, please contact [odk@lshtm.ac.uk](mailto:odk@lshtm.ac.uk), providing the name, institute and role required for each user. For data security purposes you should aim to minimise the number of web-users who have higher levels of access to your data. 
+
+[Public access links](https://docs.getodk.org/central-submissions/) can be created by web users. These links can be used by participants to submit data through a web browser. They are particularly useful for online surveys.
+
 
 ### Initial project settings
 
@@ -102,13 +110,6 @@ Who can see your data?
 	- **LSHTM’s system admins (n = 3) require reasonable access to projects for service provision, but will never access your data sets for reasons other than service provision or to respond to requests for project support**
 	- This is the best option for work that involves management of forms across time and for entity-based research
 
-### Adding additional users
-
-[App users](https://docs.getodk.org/central-users/#managing-app-users) are people who can submit data to ODK Central via the ODK Collect app. Project managers can add as many app users as they like. 
-
-[Web users](https://docs.getodk.org/central-users/#managing-web-users) are people who are authorised to use ODK Central’s web interface. There are [different roles](https://docs.getodk.org/central-users/) for web-users, but only system admins can add web-users to your project. To add web users, please contact [odk@lshtm.ac.uk](mailto:odk@lshtm.ac.uk), providing the name, institute and role required for each user. For data security purposes you should aim to minimise the number of web-users who have higher levels of access to your data. 
-
-[Public access links](https://docs.getodk.org/central-submissions/) can be created by web users. These links can be used by participants to submit data through a web browser. They are particularly useful for online surveys.
 
 
 ### Fair Usage
@@ -119,13 +120,13 @@ Users should not therefore attempt to create real-time data links, or to build r
 
 Users in violation of this policy may have their accounts suspended without warning. 
 
-Before starting data collection you will need
- 
-- A data management plan
-- A data protection impact assessment
-               - Information on data protection at LSHTM can be found [here](https://lshtm.sharepoint.com/Services/Information-Management/Data/Pages/default.aspx)
-- Ethical consent
-- If you need support for data protection issues, please contact the LSHTM Data Protection Officer at [DPO@lshtm.ac.uk](mailto:DPO@lshtm.ac.uk)
+### Before starting data collection you will need
+
+* Ethical consent
+* A data management plan
+* A data protection impact assessment
+	* Information on data protection at LSHTM can be found [here](https://lshtm.sharepoint.com/Services/Information-Management/Data/Pages/default.aspx)
+* If you need support for data protection issues, please contact the LSHTM Data Protection Officer at [DPO@lshtm.ac.uk](mailto:DPO@lshtm.ac.uk)
  
 ## Pay What You Can
 
