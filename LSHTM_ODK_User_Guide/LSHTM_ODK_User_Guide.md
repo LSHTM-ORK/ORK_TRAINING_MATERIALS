@@ -124,6 +124,7 @@ Before starting data collection you will need
 - A data management plan
 - A data protection impact assessment
                - Information on data protection at LSHTM can be found [here](https://lshtm.sharepoint.com/Services/Information-Management/Data/Pages/default.aspx)
+- Ethical consent
 - If you need support for data protection issues, please contact the LSHTM Data Protection Officer at [DPO@lshtm.ac.uk](mailto:DPO@lshtm.ac.uk)
  
 ## Pay What You Can
